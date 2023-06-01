@@ -58,13 +58,10 @@ export default function MenuAppBar() {
       <AppBar position="static">
       <Toolbar>
   <Typography variant="h6" component="span">
-    from:
+     Pro Games
   </Typography>
-  <input type="datetime-local" />
-  <Typography variant="h6" component="span" sx={{ marginLeft: '20px', marginRight: '10px' }}>
-    to:
-  </Typography>
-  <input type="datetime-local" />
+  
+  
   <Box sx={{ flexGrow: 1 }} />
   <Select
     labelId="demo-simple-select-label"

@@ -1,15 +1,14 @@
-import "./styles.css";
 import WheelComponent from "react-wheel-of-prizes";
 
 export default function App() {
   const segments = [
+    "10% off on Amazon",
+    "100Rs on Myntra",
+    "40% of on next Rapido ride",
     "better luck next time",
-    "won 70",
-    "won 10",
-    "better luck next time",
-    "won 222",
+    "30% of Flipkart",
     "won uber pass",
-    "better luck next time"
+    "20% of on Flipkart flight booking"
   ];
   const segColors = [
     "#EE4040",
@@ -26,7 +25,7 @@ export default function App() {
   };
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
+      <h1>spin the wheel and win rewards</h1>
       <div>
         <WheelComponent
           segments={segments}
@@ -43,7 +42,7 @@ export default function App() {
           fontFamily="Arial"
         />
       </div>
-      <h2>Start editing to see some magic happen!</h2>
+      
     </div>
   );
 }

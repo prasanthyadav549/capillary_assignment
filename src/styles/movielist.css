@@ -1,0 +1,10 @@
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .movie-list .movie-card {
+    margin: 10px;
+  }
+  
