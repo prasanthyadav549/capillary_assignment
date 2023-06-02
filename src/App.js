@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Header,GameList, Alert,SignIn,SignUp} from "./components";
 import { WheelComponent ,ScratchCard,DiceGame} from './pages';
 import { GameListState } from './GameContext';
+import { Container } from '@mui/material';
 function App() {
 
   const gameList = [
@@ -29,12 +30,13 @@ function App() {
   ];
 
   return (
-        
+      
     <Router>
       <div className="App">
         <Header/>
         <Routes>
           <Route path="/" element={<SignIn />} />
+          <Route path="/game-list" element={<GameList gameListArray={gameList} />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/spin-n-win" element={<WheelComponent />} />
           <Route path="/scratch-card" element={<ScratchCard />} />
@@ -44,6 +46,7 @@ function App() {
       </div>
       <Alert />
     </Router>
+   
   );
 }
 

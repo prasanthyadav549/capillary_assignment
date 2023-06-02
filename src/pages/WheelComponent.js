@@ -1,6 +1,18 @@
+import { Button, Typography } from "@mui/material";
 import WheelComponent from "react-wheel-of-prizes";
+import "../styles/wheelComponent.css"
+import { GameListState } from "../GameContext";
+import { useEffect } from "react";
+import { GameComplete} from "../components";
 
 export default function App() {
+  const {
+    addRewards,
+    setReward,
+    lives,
+    setLives
+  } = GameListState();
+
   const segments = [
     "10% off on Amazon",
     "100Rs on Myntra",
@@ -8,7 +20,7 @@ export default function App() {
     "better luck next time",
     "30% of Flipkart",
     "won uber pass",
-    "20% of on Flipkart flight booking"
+    "20% of on Flipkart flight booking",
   ];
   const segColors = [
     "#EE4040",
@@ -18,31 +30,49 @@ export default function App() {
     "#34A24F",
     "#F9AA1F",
     "#EC3F3F",
-    "#FF9000"
+    "#FF9000",
   ];
+
   const onFinished = (winner) => {
-    console.log(winner);
+    setReward(winner);
+    addRewards()
+    setLives((prevLives) => prevLives - 1);
+    
   };
+
+  // useEffect(() => {
+  //   console.log("lives", lives);
+  // }, [lives]);
+
   return (
-    <div className="App">
-      <h1>spin the wheel and win rewards</h1>
-      <div>
-        <WheelComponent
-          segments={segments}
-          segColors={segColors}
-          winningSegment="won 222"
-          onFinished={(winner) => onFinished(winner)}
-          primaryColor="black"
-          contrastColor="white"
-          buttonText="Spin"
-          isOnlyOnce={false}
-          size={190}
-          upDuration={500}
-          downDuration={600}
-          fontFamily="Arial"
-        />
-      </div>
-      
-    </div>
+    <>
+      {lives ? (
+        <div className="WheelContainer">
+          <Typography variant="h4" component="span" className="title">
+            spin the wheel and win rewards
+          </Typography>
+          <div>Lives left: {lives}</div>
+
+          <div className="wheel">
+            <WheelComponent
+              segments={segments}
+              segColors={segColors}
+              winningSegment="won 222"
+              onFinished={(winner) => onFinished(winner)}
+              primaryColor="black"
+              contrastColor="white"
+              buttonText="Spin"
+              isOnlyOnce={false}
+              size={190}
+              upDuration={500}
+              downDuration={600}
+              fontFamily="Arial"
+            />
+          </div>
+        </div>
+      ) : (
+         <GameComplete />
+      )}
+    </>
   );
 }

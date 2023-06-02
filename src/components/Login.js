@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { GameListState } from '../GameContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
  
 
@@ -24,6 +25,7 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {setAlert}= GameListState();
+  const navigate = useNavigate();
   const handleSubmit = async() => {
     if(!email || !password){
       setAlert({open:true,message:"Please enter email and password",type:"error"});
@@ -34,6 +36,7 @@ try {
   const User = await signInWithEmailAndPassword(auth,email, password);
   console.log(User);
   setAlert({open:true,message:`${User.user.email} is successfully logged in`,type:"success"});
+  navigate('/game-list');
 }
 catch (error) {
   console.log(error);

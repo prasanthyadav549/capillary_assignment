@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { GameListState } from '../GameContext';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -22,6 +23,7 @@ export default function SignUp() {
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
   const {setAlert} = GameListState()
+  const navigate = useNavigate()
   const handleSubmit = async () => {
     
 
@@ -31,6 +33,7 @@ export default function SignUp() {
       const result = await createUserWithEmailAndPassword(auth,email, password);
       console.log( "result", result);
       setAlert({open:true,message:`${result.user.email} is successfully registered`,type:"success"});
+      navigate('/')
     }
       catch (error) {
           console.log(error);
