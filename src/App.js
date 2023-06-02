@@ -1,9 +1,8 @@
 import './App.css';
-import SignIn from './components/Login';
-import SignUp from './components/SignUp';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {Header,GameList} from "./components";
+import {Header,GameList, Alert,SignIn,SignUp} from "./components";
 import { WheelComponent ,ScratchCard,DiceGame} from './pages';
+import { GameListState } from './GameContext';
 function App() {
 
   const gameList = [
@@ -28,6 +27,7 @@ function App() {
       route: "dice-game"
     }
   ];
+
   return (
         
     <Router>
@@ -36,12 +36,13 @@ function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/game-list" element={<GameList gameListArray = {gameList}/>} />
           <Route path="/spin-n-win" element={<WheelComponent />} />
           <Route path="/scratch-card" element={<ScratchCard />} />
           <Route path="/dice-game" element={<DiceGame />} />
         </Routes>
+
       </div>
+      <Alert />
     </Router>
   );
 }

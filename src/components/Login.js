@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,19 +11,35 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { GameListState } from '../GameContext';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
  
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const {setAlert}= GameListState();
+  const handleSubmit = async() => {
+    if(!email || !password){
+      setAlert({open:true,message:"Please enter email and password",type:"error"});
+      return;
+  }
+
+try {
+  const User = await signInWithEmailAndPassword(auth,email, password);
+  console.log(User);
+  setAlert({open:true,message:`${User.user.email} is successfully logged in`,type:"success"});
+}
+catch (error) {
+  console.log(error);
+  setAlert({open:true,message:error.message,type:"error"});
+  return ;
+}
   };
 
   return (
@@ -43,7 +60,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box  sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -53,6 +70,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+               value = {email}
+               onChange={(e)=>setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -63,12 +82,15 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value = {password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign In
             </Button>

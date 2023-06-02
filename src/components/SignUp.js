@@ -10,17 +10,34 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { GameListState } from '../GameContext';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [firstName, setFirstName] = React.useState('')
+  const [lastName, setLastName] = React.useState('')
+  const {setAlert} = GameListState()
+  const handleSubmit = async () => {
+    
+
+    try {
+
+         
+      const result = await createUserWithEmailAndPassword(auth,email, password);
+      console.log( "result", result);
+      setAlert({open:true,message:`${result.user.email} is successfully registered`,type:"success"});
+    }
+      catch (error) {
+          console.log(error);
+          setAlert({open:true,message:error.message,type:"error"});
+           return ;
+      }
+    
   };
 
   return (
@@ -41,7 +58,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -52,6 +69,8 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value = {firstName}
+                  onChange = {(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -62,6 +81,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value = {lastName}
+                  onChange = {(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -72,6 +93,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value = {email}
+                  onChange = {(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -83,6 +106,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value = {password}
+                  onChange = {(e) => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -91,12 +116,13 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
