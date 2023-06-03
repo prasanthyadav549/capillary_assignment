@@ -8,4 +8,12 @@ flow: 1--> the home is the login page user is asked to Login with email and pass
       5--> after each turn the user rewards are stored into the database and the playLimit 
       6--> when the user consumes all the playLimit times he is redirected to the Reset game page 
       7-- > the lives for the
+
+Default Credentials:
+    user1:
+          email: abc@gmail.com
+          password: Volley@123
+    user2: 
+          email: abcd@gmail.com
+          password: Volley@123
     

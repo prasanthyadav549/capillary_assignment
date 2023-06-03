@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import WheelComponent from "react-wheel-of-prizes";
 import "../styles/wheelComponent.css"
 import { GameListState } from "../GameContext";
@@ -40,7 +40,8 @@ export default function App() {
     <>
       {lives ? (
         <div className="WheelContainer">
-          <Typography variant="h4" component="span" className="title">
+        <Divider />
+          <Typography variant="h4" component="div" className="title">
             spin the wheel and win rewards
           </Typography>
           <div className="lives-container">

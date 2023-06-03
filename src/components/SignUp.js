@@ -33,7 +33,7 @@ export default function SignUp() {
       const result = await createUserWithEmailAndPassword(auth,email, password);
       console.log( "result", result);
       setAlert({open:true,message:`${result.user.email} is successfully registered`,type:"success"});
-      navigate('/')
+      navigate('/game-list')
     }
       catch (error) {
           console.log(error);
