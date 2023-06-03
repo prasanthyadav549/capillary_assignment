@@ -19,7 +19,14 @@ export default function GameList({gameListArray}) {
     getGames();
   }, []);
  
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <CircularProgress
+    color='primary'
+    size={50}
+    thickness={2}
+    sx={{
+      bgColor:'primary',
+    }}
+   />
   return (
     <div className="movie-list">
       {gameList.map((game) => (
