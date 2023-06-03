@@ -44,10 +44,11 @@ const ScratchCardComponent = () => {
           </Typography>
           </div>
           {isComplete && (
-            <Button className="reset-button" onClick={onClickReset}>
+            <Button  onClick={onClickReset} className="reset-button">
               Reset
             </Button>
           )}
+         
           <div className="scratch-card-wrapper">
             <ScratchCard
               ref={ref}
@@ -60,6 +61,7 @@ const ScratchCardComponent = () => {
               customBrush={x}
               className = 'scratch-card-canvas'
             >
+            </ScratchCard>
               <div className="reward-container">
                 {reward !== null && (
                   <Typography variant="h6" component="div">
@@ -67,7 +69,6 @@ const ScratchCardComponent = () => {
                   </Typography>
                 )}
               </div>
-            </ScratchCard>
           </div>
         </div>
       ) : (

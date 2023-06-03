@@ -17,16 +17,18 @@ function App() {
       url: process.env.PUBLIC_URL + '/scratch-card.jpg',
       route: "scratch-card"
     },
+    
+    {
+      title: 'Dice game',
+      url: process.env.PUBLIC_URL + '/logo192.png',
+      route: "dice-game"
+    },
     {
       title: 'Pick-n-win',
       url: process.env.PUBLIC_URL + '/pick-n-win.jpg',
       route: "pick-n-win"
     },
-    {
-      title: 'Dice game',
-      url: process.env.PUBLIC_URL + '/logo192.png',
-      route: "dice-game"
-    }
+
   ];
 
   return (

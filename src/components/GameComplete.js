@@ -12,6 +12,7 @@ const GameComplete = () => {
 
   const handleClick = async () => {
     const playLimitRef = doc(db, "playLimit", user?.uid);
+    navigate("/game-list");
     try {
       await setDoc(playLimitRef, {
         limit: 0
@@ -24,7 +25,7 @@ const GameComplete = () => {
         message: error.message,
       });
     }
-    navigate("/game-list");
+    
   };
 
   return (
@@ -37,7 +38,7 @@ const GameComplete = () => {
         </Typography>
       </div>
       <div className="restart-button">
-        <Button variant="outlined" onClick={handleClick} >
+        <Button variant="contained"  color="success" onClick={handleClick} >
           Restart the Game
         </Button>
       </div>
