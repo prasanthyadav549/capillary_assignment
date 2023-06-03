@@ -38,7 +38,7 @@ const GameComplete = () => {
         </Typography>
       </div>
       <div className="restart-button">
-        <Button variant="contained"  color="success" onClick={handleClick} >
+        <Button variant=""  color="success" onClick={handleClick} >
           Restart the Game
         </Button>
       </div>
