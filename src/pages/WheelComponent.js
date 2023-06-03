@@ -10,7 +10,6 @@ export default function App() {
     addRewards,
     setReward,
     lives,
-    setLives
   } = GameListState();
 
   const segments = [
@@ -35,15 +34,8 @@ export default function App() {
 
   const onFinished = (winner) => {
     setReward(winner);
-    addRewards()
-    setLives((prevLives) => prevLives - 1);
-    
+    addRewards(winner)
   };
-
-  // useEffect(() => {
-  //   console.log("lives", lives);
-  // }, [lives]);
-
   return (
     <>
       {lives ? (
@@ -51,7 +43,11 @@ export default function App() {
           <Typography variant="h4" component="span" className="title">
             spin the wheel and win rewards
           </Typography>
-          <div>Lives left: {lives}</div>
+          <div className="lives-container">
+          <Typography variant="h5" component="div">
+          Lives left: {lives}
+          </Typography>
+          </div>
 
           <div className="wheel">
             <WheelComponent

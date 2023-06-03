@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { auth, db } from './firebase';
-import { doc, onSnapshot, setDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 
 const gameList = createContext()
 
@@ -39,24 +39,34 @@ const GameContext = ({children}) => {
     }, []);
 
     const addRewards = async (value) => {
+      const user = auth.currentUser;
+    
       const ref = doc(db, "rewards", user?.uid);
-      const playLimitRef = doc(db, 'playLimit', user?.uid);
+      const playLimitRef = doc(db, "playLimit", user?.uid);
     
       try {
-        await setDoc(playLimitRef, {
-          limit: maxLives - (lives - 1), // Decrease lives by 1
-        });
+        const playLimitSnap = await getDoc(playLimitRef);
+        const playLimitData = playLimitSnap.data();
+    
+        if (playLimitData) {
+          const newLimit = playLimitData.limit + 1;
+    
+          await setDoc(playLimitRef, {
+            limit: newLimit,
+          });
+    
+          setLives(maxLives-newLimit); // Update the local 'lives' state
+        }
       } catch (error) {
         console.log(error);
         setAlert({
           open: true,
-          type: 'error',
+          type: "error",
           message: error.message,
         });
       }
     
       try {
-        console.log('reward', reward);
         await setDoc(ref, {
           rewards: rewards ? [...rewards, value] : [value],
         });
@@ -66,8 +76,6 @@ const GameContext = ({children}) => {
           type: "success",
           message: "Reward Saved Successfully",
         });
-    
-        //setLives((prevLives) => prevLives - 1); // Decrease lives by 1 after updating rewards
       } catch (error) {
         console.log(error);
         setAlert({
@@ -77,6 +85,7 @@ const GameContext = ({children}) => {
         });
       }
     };
+    
     
 
     useEffect(() => {

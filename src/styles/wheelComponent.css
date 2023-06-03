@@ -2,20 +2,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
     justify-content: center;
     height: 100vh;
     margin-top: 100px;
   }
+
+  .lives-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
   
-  /* .WheelContainer .title {
-    margin-bottom: 20px;
+   .WheelContainer .title {
+    margin-bottom: 0px;
     text-align: center;
-  } */
+  } 
   
   .WheelContainer .wheel {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-left: 180px;
+    margin-left: 400px;
   }
   

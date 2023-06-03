@@ -3,6 +3,7 @@ import ScratchCard, { CUSTOM_BRUSH_PRESET } from "react-scratchcard-v2";
 import { Button, Typography } from "@mui/material";
 import { GameListState } from "../GameContext";
 import { GameComplete } from "../components";
+import "../styles/scratchCard.css"; 
 
 const x = CUSTOM_BRUSH_PRESET;
 
@@ -20,49 +21,46 @@ const ScratchCardComponent = () => {
 
   const onClickReset = () => {
     ref.current && ref.current.reset();
-    setIsComplete(!isComplete);
+    setIsComplete(false); // Always set isComplete to false when clicking reset
   };
 
   const onComplete = () => {
     const randomPercentage = Math.floor(Math.random() * 100);
     setReward(randomPercentage);
-    setIsComplete(!isComplete);
-   // setLives((prevLives) => prevLives - 1);
     addRewards(randomPercentage); // Pass the randomPercentage to addRewards function
-    
+    setIsComplete(true); // Set isComplete to true after setting the reward
   };
 
   return (
     <>
       {lives ? (
-        <div>
+        <div className="scratch-card-container">
           <Typography variant="h4" component="div" className="title">
-            spin the wheel and win rewards
+            Scratch and win rewards
           </Typography>
-          <div>Lives left: {lives}</div>
+          <div className="lives-container">
+          <Typography variant="h6" component="div">
+          Lives left: {lives}
+          </Typography>
+          </div>
           {isComplete && (
-            <Button onClick={onClickReset}>Reset</Button>
+            <Button className="reset-button" onClick={onClickReset}>
+              Reset
+            </Button>
           )}
-          <div>
+          <div className="scratch-card-wrapper">
             <ScratchCard
               ref={ref}
               width={372}
               height={226}
-              image={process.env.PUBLIC_URL + '/scratch-card2.jpg'}
+              image={process.env.PUBLIC_URL + "/scratch-card2.jpg"}
               finishPercent={35}
               onComplete={onComplete}
               brushSize={25}
               customBrush={x}
+              className = 'scratch-card-canvas'
             >
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  height: "100%",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
+              <div className="reward-container">
                 {reward !== null && (
                   <Typography variant="h6" component="div">
                     {reward}Rs Cashback

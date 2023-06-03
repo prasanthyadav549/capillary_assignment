@@ -1,0 +1,37 @@
+.scratch-card-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .title {
+    margin-bottom: 30px;
+  }
+  
+  .lives-container {
+    margin-bottom: 30px;
+  }
+  
+  .reset-button {
+    width: 150px;
+    height: 40px;
+    margin-bottom: 30px;
+  }
+  
+ 
+  
+  .reward-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-left:    100px;
+  }
+  .scratch-card-wrapper {
+   margin-left: 380px;
+    text-align: center;
+  }
+  .scratch-card-canvas {
+    margin-left: auto;
+    margin-right: auto;
+  }
