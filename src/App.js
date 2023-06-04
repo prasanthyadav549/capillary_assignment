@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Header,GameList, Alert,SignIn,SignUp} from "./components";
-import { WheelComponent ,ScratchCard,DiceGame} from './pages';
+import { WheelComponent ,ScratchCard,DiceGame, RewardsComponent} from './pages';
 
 function App() {
 
@@ -42,6 +42,7 @@ function App() {
           <Route path="/spin-n-win" element={<WheelComponent />} />
           <Route path="/scratch-card" element={<ScratchCard />} />
           <Route path="/dice-game" element={<DiceGame />} />
+          <Route path="/rewards" element={<RewardsComponent />} />
         </Routes>
 
       </div>

@@ -17,10 +17,6 @@ Default Credentials:
           email: abcd@gmail.com
           password: Volley@123
           
- Deployment Link: https://capillary-assignment.web.app/
+ Deployment Link: https://capillary-assignment-v2.netlify.app/
  
- !** 
-  In the Above deployment link SignUp is not working for some reason but it is working in the localhost
-  please Login using the Default Credentials
-  **|
     
