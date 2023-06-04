@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ScratchCard, { CUSTOM_BRUSH_PRESET } from "react-scratchcard-v2";
 import { Button, Typography } from "@mui/material";
 import { GameListState } from "../GameContext";

@@ -2,8 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Header,GameList, Alert,SignIn,SignUp} from "./components";
 import { WheelComponent ,ScratchCard,DiceGame} from './pages';
-import { GameListState } from './GameContext';
-import { Container } from '@mui/material';
+
 function App() {
 
   const gameList = [

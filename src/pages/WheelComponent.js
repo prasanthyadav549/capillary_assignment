@@ -2,7 +2,6 @@ import { Button, Divider, Typography } from "@mui/material";
 import WheelComponent from "react-wheel-of-prizes";
 import "../styles/wheelComponent.css"
 import { GameListState } from "../GameContext";
-import { useEffect } from "react";
 import { GameComplete} from "../components";
 
 export default function App() {
