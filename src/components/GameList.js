@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GameCard from './GameCard';
-import '../styles/movielist.css';
+import '../styles/movieList.css';
 import { CircularProgress } from '@mui/material';
 
 export default function GameList({gameListArray}) {
