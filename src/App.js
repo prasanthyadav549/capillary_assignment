@@ -36,9 +36,9 @@ function App() {
       <div className="App">
         <Header/>
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/" element={<SignUp />} />
           <Route path="/game-list" element={<GameList gameListArray={gameList} />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path="/spin-n-win" element={<WheelComponent />} />
           <Route path="/scratch-card" element={<ScratchCard />} />
           <Route path="/dice-game" element={<DiceGame />} />

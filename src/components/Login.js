@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField'; 
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,6 +14,7 @@ import { GameListState } from '../GameContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom/dist';
 
  
 
@@ -99,7 +99,8 @@ catch (error) {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/sign-up" variant="body2">
+                <Link
+                 to="/" >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
